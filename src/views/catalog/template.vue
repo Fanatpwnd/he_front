@@ -57,6 +57,7 @@
 import {changeCatalogView} from './src/js/App';
 import Card from '@/components/card/template';
 import PlaneFilter from '@/components/filter/template';
+import api from '@/api';
 
 export default {
     
@@ -92,8 +93,15 @@ export default {
         Card,
         PlaneFilter
     },
-    mounted: () => {
+    async created() {
+
+        let planes = await api.getPlans();
+
+    },
+    mounted() {
+        
         changeCatalogView();
+
     }
 
 }

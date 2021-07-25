@@ -60,7 +60,7 @@ export default {
   },
   mounted: function () {
 
-    RevealMenu();
+    // RevealMenu();
     burgerAnim();
 
   }
