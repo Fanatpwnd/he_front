@@ -1,0 +1,22 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --blue: #24AEF6;
+  --gray: #F6F6F6;
+  --gray-2: #c7c7c7;
+  --dark-gray: rgba(0, 0, 0, 0.5);
+  --placeholder-color: #A0A3BD;
+
+  --b-radius: 10px;
+}
+
+
+$viewport--sm:                      320px;
+$viewport--md:                      768px;
+$viewport--lg:                      1024px;
+$viewport--xl:                      1440px;
+$viewport--xxl:                     1920px;
+
+
+$retina-dpi:                        144dpi;
+$retina-dppx:                       1.5dppx;

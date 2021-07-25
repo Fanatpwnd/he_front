@@ -1,0 +1,52 @@
+@mixin resetBtn {
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}
+
+@mixin listReset {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+// Mobile first
+
+@mixin viewport--md {
+  @media (min-width: $viewport--md) {
+    @content;
+  }
+}
+
+@mixin viewport--lg {
+  @media (min-width: $viewport--lg) {
+    @content;
+  }
+}
+
+@mixin viewport--xl {
+  @media (min-width: $viewport--xl) {
+    @content;
+  }
+}
+
+@mixin viewport--xxl {
+  @media (min-width: $viewport--xxl) {
+    @content;
+  }
+}

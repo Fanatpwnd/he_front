@@ -1,0 +1,74 @@
+.filter {
+  position: absolute;
+  width: 290px;
+  min-width: 290px;
+  top: 49px;
+  left: 12px;
+  background-color: var(--white);
+  z-index: 3;
+  padding-top: 10px;
+  transform: translateX(-120%);
+  transition: transform .3s ease;
+
+  @include viewport--md {
+    position: relative;
+    top: unset;
+    left: unset;
+    transform: none;
+    margin-right: 29px;
+    padding-top: 0;
+  }
+
+
+  &.filter--visible {
+    transform: translateX(0);
+  }
+}
+
+.filter-btn {
+  margin-top: 12px;
+  width: 150px;
+  position: absolute;
+  top: -53px;
+
+
+  @include viewport--md {
+    display: none;
+  }
+}
+
+
+.filter-list {
+  @include listReset;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 4;
+  background-color: var(--white);
+}
+
+.filter-item {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  margin-bottom: 22px;
+}
+
+.filter-item .checkbox-container{
+  width: 100px;
+  &:nth-child(even) {
+    margin-right: 69px;
+  }
+
+}
+
+.filter-item__title {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.015em;
+  color: var(--black);
+  margin-bottom: 20px;
+}

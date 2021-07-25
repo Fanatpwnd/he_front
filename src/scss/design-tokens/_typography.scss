@@ -1,0 +1,106 @@
+.title {
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.3;
+
+  @include viewport--md {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  @include viewport--lg {
+    font-size: 50px;
+    line-height: 40px;
+  }
+}
+
+.section-title {
+  position: absolute;
+  left: 10%;
+  top: 150px;
+  margin: 0;
+
+  &::before {
+    content: "";
+    width: 80px;
+    height: 1px;
+    background-color: var(--accent-color);
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: -100%;
+    left: -100%;
+    font-weight: 800;
+    font-size: 200px;
+    opacity: var( --accent-color-alt-2);
+  }
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing:3px;
+  text-transform: uppercase;
+  position: relative;
+  font-weight: 800;
+  display: flex;
+
+  @media screen and (min-width: 374px) {}
+  @media screen and (min-width: 768px) {}
+  @media screen and (min-width: 1024px) {
+    font-size: 40px;
+    letter-spacing: 7px;
+  }
+
+
+}
+
+.text {
+  margin: 0;
+  font-weight: 800;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+.subtext {
+  margin: 0;
+  font-size: 14px;
+  opacity: var(--accent-color-alt);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  position: relative;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 22px;
+    letter-spacing: 7px;
+  }
+
+  &::before {
+    content: "";
+    width: 60px;
+    height: 1px;
+    position: absolute;
+    left: -73px;
+    top: 50%;
+    background-color: var(--main-text-color);
+
+    @media screen and (min-width: 768px) {
+      width: 80px;
+      left: -115px;
+    }
+
+  }
+
+  &--left::before {
+    left: 90px;
+
+    @media screen and (min-width: 1024px) {
+      left: 150px;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.icon {
+  position: relative;
+  display: grid;
+  place-content: center;
+  width: 43px;
+  height: 43px;
+  fill: #24AEF6;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  cursor: pointer;
+  stroke: var(--blue);
+  opacity: .95;
+
+  @include viewport--md {
+    width: 56px;
+    height: 56px;
+  }
+}

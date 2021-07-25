@@ -1,0 +1,145 @@
+.button {
+  @include resetBtn;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  max-width: 350px;
+  background-color: var(--blue);
+  color: #ffffff;
+  height: 32px;
+  border-radius: var(--border-radius);
+}
+
+.button-round {
+  @include resetBtn;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  background-color: var(--white);
+  display: grid;
+  place-content: center;
+  margin-right: 4px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  svg > * {
+    fill: var(--blue);
+  }
+
+  @include viewport--md {
+    height: 30px;
+    width: 30px;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  @include viewport--lg {
+    height: 40px;
+    width: 40px;
+    margin-right: 16px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.button-round-active {
+  background-color: var(--blue);
+  pointer-events: none;
+
+
+  svg > * {
+    fill: var(--white);
+  }
+}
+
+.button-secondary {
+  border: 1px solid var(--blue);
+  background-color: var(--white);
+  color: var(--blue);
+  border-radius: 5px;
+}
+
+.button-switcher {
+  @include resetBtn;
+  border: 1px solid var(--blue);
+  background-color: var(--white);
+  color: var(--blue);
+  margin: 0;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  flex-grow: 1;
+
+  &:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+
+  &:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  &.active {
+    background-color: var(--blue);
+    color: var(--white);
+  }
+
+  @include viewport--md {
+    height: 30px;
+    width: 120px;
+  }
+
+  @include viewport--lg {
+    height: 40px;
+    width: 195px;
+  }
+}
+
+.button-delete  {
+  border: 1px solid var(--blue);
+  background-color: var(--blue);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-content: center;
+
+  svg {
+    width: 16px;
+    height: 16px;
+
+    * {
+      fill: var(--white);
+      transition: fill .3s ease-out;
+    }
+
+  }
+}
+
+
+
+.button-small {
+  @include resetBtn;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+}

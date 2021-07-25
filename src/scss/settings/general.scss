@@ -1,0 +1,37 @@
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--main-text-color);
+  background-color: var(--bg-color);
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include viewport--md {
+    padding: 0 20px;
+  }
+
+  @include viewport--lg {
+    padding: 0 40px;
+  }
+}
+
+a {
+  text-decoration: none;
+}
