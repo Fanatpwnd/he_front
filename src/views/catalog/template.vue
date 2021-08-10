@@ -67,21 +67,21 @@ export default {
             planes : [
                 {
                     'id' : 1,
-                    'img' : require('@/images/plan.jpg'),
+                    'img' : '/images/plan.jpg',
                     'title' : '1-к.  39,6 м², 1/5 эт. 2345685 -4-765-03 1-к.  39,6 м², 1/5 эт. 2345685 -4-765-03',
                     'price' : '30 000 000 ₽',
                     'description' : 'Абзац описания карточки планировки rjnjhsq очень очень длинный, возможно даже на несколько строчек b ,jktt njujfdfdfdfdffdfd fdfddd'
                 },
                 {
                     'id' : 2,
-                    'img' : require('@/images/plan.jpg'),
+                    'img' : '/images/plan.jpg',
                     'title' : '1-к.  39,6 м², 1/5 эт. 2345685 -4-765-03 1-к.  39,6 м², 1/5 эт. 2345685 -4-765-03',
                     'price' : '30 000 000 ₽',
                     'description' : 'Абзац описания карточки планировки rjnjhsq очень очень длинный, возможно даже на несколько строчек b ,jktt njujfdfdfdfdffdfd fdfddd'
                 },
                 {
                     'id' : 3,
-                    'img' : require('@/images/plan.jpg'),
+                    'img' : '/images/plan.jpg',
                     'title' : '1-к.  39,6 м², 1/5 эт. 2345685 -4-765-03 1-к.  39,6 м², 1/5 эт. 2345685 -4-765-03',
                     'price' : '30 000 000 ₽',
                     'description' : 'Абзац описания карточки планировки rjnjhsq очень очень длинный, возможно даже на несколько строчек b ,jktt njujfdfdfdfdffdfd fdfddd'

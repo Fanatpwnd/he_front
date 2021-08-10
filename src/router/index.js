@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Catalog from '@/views/catalog/template';
-import Login from '@/views/login/template';
+import Catalog from '@/views/catalog/template.vue';
+import Login from '@/views/login/template.vue';
 import store from '@/store.js'
 
 Vue.use(VueRouter)

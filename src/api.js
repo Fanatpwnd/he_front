@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const client = axios.create({
 	baseURL: 'http://127.0.0.1:8000',
-	json: true
+	json: false
 })
 
 
@@ -95,11 +95,83 @@ export default {
 
     },
 
-    login(login, code, csrf) {
+    login(login, code, isEmail) {
+
+		if (typeof(isEmail) === 'undefined') isEmail = true;
+
+		let data = {
+			'code' : code
+		}
+
+		if (isEmail) {
+
+			data['email'] = login;
+
+		} else {
+
+			data['phone'] = login;
+
+		}
 
         return new Promise((resolve) => {
 			
-			this.execute('get', 'sanctum/plans/').then((value) => {
+			this.execute('post', 'api/login', data).then((value) => {
+								
+				resolve(value);
+
+			})
+
+		})
+
+    },
+
+	register(login, isEmail) {
+
+		if (typeof(isEmail) === 'undefined') isEmail = true;
+
+		let data = {}
+
+		if (isEmail) {
+
+			data['email'] = login;
+
+		} else {
+
+			data['phone'] = login;
+
+		}
+
+        return new Promise((resolve) => {
+			
+			this.execute('post', 'api/register', data).then((value) => {
+								
+				resolve(value);
+
+			})
+
+		})
+
+    },
+
+	request_code(login, isEmail) {
+
+		if (typeof(isEmail) === 'undefined') isEmail = true;
+
+		let data = {}
+
+		if (isEmail) {
+
+			data['email'] = login;
+
+		} else {
+
+			data['phone'] = login;
+
+		}
+
+        return new Promise((resolve) => {
+			
+			this.execute('post', 'api/request-code', data).then((value) => {
 								
 				resolve(value);
 

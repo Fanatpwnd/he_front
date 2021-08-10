@@ -7,7 +7,7 @@
             <h1>Ввод логина</h1>
 
             <input type="text" v-model="login">
-            <button @click="handleSubmit">send</button>
+            <button @click="handleRequest">Запросить код</button>
 
         </div>
 
@@ -16,7 +16,7 @@
             <h1>Ввод кода</h1>
 
             <input type="text" v-model="code">
-            <button>send</button>
+            <button @click="handleLogin">Залогиницо</button>
 
         </div>
 
@@ -25,7 +25,7 @@
             <h1>Ввод логина для регистрации</h1>
 
             <input type="text" v-model="register">
-            <button>send</button>
+            <button @click="handleRegister">Зарегацо</button>
 
         </div>
 
@@ -47,11 +47,11 @@ export default {
         }
     },
     methods: {
-        async handleSubmit(e){
+        async handleLogin(e){
 
             e.preventDefault();
         
-            if ( this.login.length > 0 && this.$store.dispatch('csrf')) {
+            if ( this.login.length > 0 && this.code.length > 0 && this.$store.dispatch('csrf')) {
 
                 if ( this.$store.dispatch('login', {
                         login: this.login
@@ -59,6 +59,31 @@ export default {
                     this.$router.push()
 
             }
+
+        },
+
+        async handleRegister(e){
+
+            e.preventDefault();
+        
+            if ( this.register.length > 0 && this.$store.dispatch('csrf')) {
+
+                if ( this.$store.dispatch('register', {
+                        login: this.register
+                    }) )
+                    this.$router.push()
+
+            }
+
+        },
+
+        async handleRequest(e){
+
+            e.preventDefault();
+        
+            this.$store.dispatch('request_code', {
+                login: this.login
+            })
 
         }
 

@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		status: '',
-		token: localStorage.getItem('token') || '',
+		token: '1',
 		user : {},
         csrf : ''
 	},
@@ -44,6 +44,8 @@ export default new Vuex.Store({
 
 			let loginStatus = await api.login(user.login, user.code);
 
+			console.log('Try login:', loginStatus)
+
 			if ( loginStatus ) {
 				
 				console.log(loginStatus)
@@ -64,15 +66,55 @@ export default new Vuex.Store({
 
 		},
 
-		logout({commit}){
+		async register({commit}, user) {
 
-			return new Promise((resolve) => {
-				commit('logout')
-				localStorage.removeItem('token')
-				resolve()
-			})
+			commit('auth_request')
+
+			let loginStatus = await api.register(user.login);
+
+			console.log('Try register:', loginStatus)
+
+			// if ( loginStatus ) {
+				
+			// 	console.log(loginStatus)
+
+			// 	localStorage.setItem('user', JSON.stringify(loginStatus.user))
+			// 	localStorage.setItem('token', loginStatus.token)
+
+			// 	commit('auth_success', loginStatus.token, loginStatus.user)
+
+			// 	return true
+
+			// }
+
+			// commit('auth_error')
+			// localStorage.removeItem('token')
+
+			return false
+
+		},
+
+		async request_code({commit}, user) {
+
+			commit('auth_request')
+
+			let loginStatus = await api.request_code(user.login);
+
+			console.log('Try request:', loginStatus)
+
+			return false
 
 		}
+
+		// logout({commit}){
+
+		// 	return new Promise((resolve) => {
+		// 		commit('logout')
+		// 		localStorage.removeItem('token')
+		// 		resolve()
+		// 	})
+
+		// }
 
 	},
 	getters : {
