@@ -138,7 +138,7 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "@/components/login/_login.scss";
+@import "@/scss/components/login/_login.scss";
 
 </style>
 
