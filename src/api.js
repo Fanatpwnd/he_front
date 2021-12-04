@@ -14,7 +14,8 @@ export default {
 		let reqObj = {
 			method,
 			url: resource,
-			data
+			headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+			data,
 		}
 
 		return client(reqObj).then(req => {
@@ -67,6 +68,20 @@ export default {
 		return new Promise((resolve) => {
 			
 			this.execute('get', 'api/plans/').then((value) => {
+								
+				resolve(value);
+
+			})
+
+		})
+
+	},
+
+	getMyProfile() {
+
+		return new Promise((resolve) => {
+			
+			this.execute('get', 'api/profile/').then((value) => {
 								
 				resolve(value);
 

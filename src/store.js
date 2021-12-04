@@ -135,6 +135,7 @@ export default new Vuex.Store({
 		isLoggedIn: state => !!state.token,
 		authStatus: state => state.status,
 		errors: state => state.errors,
-		error_message: state => state.message
+		error_message: state => state.message,
+		user_id: state => state.user
 	}
 })

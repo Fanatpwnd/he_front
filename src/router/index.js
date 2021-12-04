@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Catalog from '@/views/catalog/template.vue';
+import Profile from '@/views/profile/template.vue';
 import Login from '@/views/login/template.vue';
 import store from '@/store.js'
 
@@ -11,6 +12,12 @@ const routes = [
     path: '/',
     name: 'Planes',
     component: Catalog,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
     meta: { requiresAuth: true }
   },
   {

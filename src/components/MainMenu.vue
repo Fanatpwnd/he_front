@@ -11,8 +11,8 @@
 
             <nav class="header__nav header__nav--mobile nav-js" data-active="false">
                 <ul class="header__menu">
-                    <li class="header__menu-item"><a href="#">Мои планировки</a></li>
-                    <li class="header__menu-item"><a href="#">Профиль</a></li>
+                    <li class="header__menu-item"><a href="/">Мои планировки</a></li>
+                    <li class="header__menu-item"><a href="/profile">Профиль</a></li>
                     <li class="header__menu-item"><a href="#">Оплата</a></li>
                     <li class="header__menu-item"><a href="#">Помощь</a></li>
                     <li class="header__menu-item"><a href="#" @click="logout()">Выйти</a></li>
@@ -20,12 +20,12 @@
             </nav>
             <nav class="main-nav header__nav--desktop">
                 <ul class="main-nav__list">
-                    <li class="main-nav__item"><span>Мои планировки</span></li>
+                    <li class="main-nav__item"><a href="/">Мои планировки</a></li>
 
                     <li class="main-nav__item main-nav__item--marked">
                         <span>Пользователь</span>
                         <ul class="main-nav__sublist">
-                            <li class="main-nav__sublist-item"><a href="#">Профиль</a></li>
+                            <li class="main-nav__sublist-item"><a href="/profile">Профиль</a></li>
                             <li class="main-nav__sublist-item"><a href="#">Оплата</a></li>
                             <li class="main-nav__sublist-item"><a href="#">Помощь</a></li>
                             <li class="main-nav__sublist-item"><a href="#" @click="logout()">Выйти</a></li>
