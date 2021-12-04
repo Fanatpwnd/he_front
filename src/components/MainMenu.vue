@@ -15,7 +15,7 @@
                     <li class="header__menu-item"><a href="#">Профиль</a></li>
                     <li class="header__menu-item"><a href="#">Оплата</a></li>
                     <li class="header__menu-item"><a href="#">Помощь</a></li>
-                    <li class="header__menu-item"><a href="#">Выйти</a></li>
+                    <li class="header__menu-item"><a href="#" @click="logout()">Выйти</a></li>
                 </ul>
             </nav>
             <nav class="main-nav header__nav--desktop">
@@ -28,7 +28,7 @@
                             <li class="main-nav__sublist-item"><a href="#">Профиль</a></li>
                             <li class="main-nav__sublist-item"><a href="#">Оплата</a></li>
                             <li class="main-nav__sublist-item"><a href="#">Помощь</a></li>
-                            <li class="main-nav__sublist-item"><a href="#">Выйти</a></li>
+                            <li class="main-nav__sublist-item"><a href="#" @click="logout()">Выйти</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -63,6 +63,12 @@ export default {
     // RevealMenu();
     burgerAnim();
 
+  },
+  methods: {
+    logout() {
+        this.$store.dispatch('logout');
+        this.$router.push({name: 'Login'}).catch(e => {})
+    }
   }
 }
 

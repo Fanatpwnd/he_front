@@ -7,62 +7,73 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		status: '',
-		token: '1',
+		token: localStorage.getItem('token') || '',
 		user : {},
-        csrf : ''
+		errors : {},
+		message: ''
 	},
 	mutations: {
 		auth_request(state) {
 			state.status = 'loading'
+			state.errors = {}
+			state.message = ''
 		},
-		auth_success(state, token, user) {
+		auth_success(state, payload) {
 			state.status = 'success'
-			state.token = token
-			state.user = user
+			state.token = payload.token
+			state.user = payload.user
 		},
-		auth_error(state){
+		auth_error(state, payload){
 			state.status = 'error'
+			state.errors = payload.errors
+			state.message = payload.message
 		},
 		logout(state){
 			state.status = ''
 			state.token = ''
 		},
+		clear_error(state){
+			state.status = ''
+			state.errors = {}
+			state.message = ''
+		}
 	},
 	actions: {
-
-        async csrf({commit}) {
-
-            let result = await api.csrf();
-
-            return true;
-
-        },
 
 		async login({commit}, user) {
 
 			commit('auth_request')
 
-			let loginStatus = await api.login(user.login, user.code);
+			let loginStatus = await api.login(user.login, user.password);
 
 			console.log('Try login:', loginStatus)
 
-			if ( loginStatus ) {
+			if ( typeof(loginStatus.token) !== 'undefined' && loginStatus.token != '' ) {
 				
 				console.log(loginStatus)
 
-				localStorage.setItem('user', JSON.stringify(loginStatus.user))
 				localStorage.setItem('token', loginStatus.token)
 
-				commit('auth_success', loginStatus.token, loginStatus.user)
+				commit('auth_success', {
+					token: loginStatus.token, 
+					user: loginStatus.id
+				})
 
 				return true
 
+			} else {
+
+				
+				localStorage.removeItem('token')
+
+				commit('auth_error', {
+					message: loginStatus.message, 
+					errors: loginStatus.errors
+				})
+				
+				return false
+			
 			}
-
-			commit('auth_error')
-			localStorage.removeItem('token')
-
-			return false
 
 		},
 
@@ -70,55 +81,60 @@ export default new Vuex.Store({
 
 			commit('auth_request')
 
-			let loginStatus = await api.register(user.login);
+			let loginStatus = await api.register(user.login, user.password, user.password_confirmation);
 
 			console.log('Try register:', loginStatus)
 
-			// if ( loginStatus ) {
+			if ( typeof(loginStatus.token) !== 'undefined' && loginStatus.token != '' ) {
 				
-			// 	console.log(loginStatus)
+				console.log(loginStatus)
 
-			// 	localStorage.setItem('user', JSON.stringify(loginStatus.user))
-			// 	localStorage.setItem('token', loginStatus.token)
+				localStorage.setItem('token', loginStatus.token)
 
-			// 	commit('auth_success', loginStatus.token, loginStatus.user)
+				commit('auth_success', {
+					token: loginStatus.token, 
+					user: loginStatus.id
+				})
 
-			// 	return true
+				return true
 
-			// }
+			} else {
 
-			// commit('auth_error')
-			// localStorage.removeItem('token')
+				localStorage.removeItem('token')
 
-			return false
+				commit('auth_error', {
+					message: loginStatus.message, 
+					errors: loginStatus.errors
+				})
+				
+				return false
+			
+			}
 
 		},
 
-		async request_code({commit}, user) {
 
-			commit('auth_request')
+		logout({commit}){
 
-			let loginStatus = await api.request_code(user.login);
+			return new Promise((resolve) => {
+				commit('logout')
+				localStorage.removeItem('token')
+				resolve()
+			})
 
-			console.log('Try request:', loginStatus)
+		},
 
-			return false
+		clear_error({commit}) {
+			
+			commit('clear_error')
 
 		}
-
-		// logout({commit}){
-
-		// 	return new Promise((resolve) => {
-		// 		commit('logout')
-		// 		localStorage.removeItem('token')
-		// 		resolve()
-		// 	})
-
-		// }
 
 	},
 	getters : {
 		isLoggedIn: state => !!state.token,
 		authStatus: state => state.status,
+		errors: state => state.errors,
+		error_message: state => state.message
 	}
 })

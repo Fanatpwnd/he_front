@@ -1,7 +1,8 @@
 import axios from 'axios'
+import config from "@/config"
 
 const client = axios.create({
-	baseURL: 'http://127.0.0.1:8000',
+	baseURL: config.API_URL,
 	json: false
 })
 
@@ -22,9 +23,7 @@ export default {
 
 		}, err => {
 			
-			return {
-				'error': typeof(err.response) !== 'undefined' && typeof(err.response.data) !== 'undefined' && typeof(err.response.data.message) !== 'undefined' ? err.response.data.message : ''
-			}
+			return err.response.data
 
 		})
 
@@ -42,7 +41,7 @@ export default {
 		const cancel_token = axios.CancelToken.source();
 
 		let new_client = axios.create({
-			baseURL: '127.0.0.1:8000',
+			baseURL: config.API_URL,
 			json: true,
 			cancelToken: cancel_token.token
 		})
@@ -54,9 +53,7 @@ export default {
 
 		}, err => {
 			
-			return {
-				'error': typeof(err.response) !== 'undefined' && typeof(err.response.data) !== 'undefined' && typeof(err.response.data.message) !== 'undefined' ? err.response.data.message : ''
-			}
+			return err.response.data
 
 		})
 
@@ -79,43 +76,16 @@ export default {
 
 	},
 
-    csrf() {
-
-        return new Promise((resolve) => {
-			
-			axios('http://127.0.0.1:8000/sanctum/csrf-cookie', {exposedHeaders: ["set-cookie"],}).then(req => {
-
-                console.log(req);
-								
-				resolve(req);
-
-			})
-
-		})
-
-    },
-
-    login(login, code, isEmail) {
-
-		if (typeof(isEmail) === 'undefined') isEmail = true;
+    login(login, password) {
 
 		let data = {
-			'code' : code
-		}
-
-		if (isEmail) {
-
-			data['email'] = login;
-
-		} else {
-
-			data['phone'] = login;
-
+			'email' : login,
+			'password' : password
 		}
 
         return new Promise((resolve) => {
 			
-			this.execute('post', 'api/login', data).then((value) => {
+			this.execute('post', 'api/loginByEmail', data).then((value) => {
 								
 				resolve(value);
 
@@ -125,53 +95,17 @@ export default {
 
     },
 
-	register(login, isEmail) {
+	register(login, password, password_confirmation) {
 
-		if (typeof(isEmail) === 'undefined') isEmail = true;
-
-		let data = {}
-
-		if (isEmail) {
-
-			data['email'] = login;
-
-		} else {
-
-			data['phone'] = login;
-
+		let data = {
+			'email' : login,
+			'password' : password, 
+			'password_confirmation' : password_confirmation
 		}
 
         return new Promise((resolve) => {
 			
-			this.execute('post', 'api/register', data).then((value) => {
-								
-				resolve(value);
-
-			})
-
-		})
-
-    },
-
-	request_code(login, isEmail) {
-
-		if (typeof(isEmail) === 'undefined') isEmail = true;
-
-		let data = {}
-
-		if (isEmail) {
-
-			data['email'] = login;
-
-		} else {
-
-			data['phone'] = login;
-
-		}
-
-        return new Promise((resolve) => {
-			
-			this.execute('post', 'api/request-code', data).then((value) => {
+			this.execute('post', 'api/registerByEmail', data).then((value) => {
 								
 				resolve(value);
 
