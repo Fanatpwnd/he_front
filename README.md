@@ -1,5 +1,9 @@
 # vue_he
 
+## Конфигурирование
+
+Переименовать src/config/index.js.template на index.js и поменять в нём API_URL на актуальный. После этого можно собирать в продакшн.
+
 ## Project setup
 ```
 npm install
